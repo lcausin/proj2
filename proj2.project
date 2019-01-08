@@ -5,8 +5,8 @@
             <setting name="generalgeneric" value="./Generic/"/>
             <setting name="generalsource" value="./src/"/>
             <setting name="generaltmp" value="./Cooking/"/>
-            <setting name="generalicon" value=""/>
-            <setting name="generalsplashscreen" value=""/>
+            <setting name="generalicon" value="Carre_gris.png"/>
+            <setting name="generalsplashscreen" value="Carre_gris.png"/>
             <setting name="savedata_icon" value=""/>
             <setting name="background_img" value=""/>
             <setting name="generalmajor" value="0"/>
