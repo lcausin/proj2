@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.2.1)
 
-find_program(SHGAMEPACKAGER_EXECUTABLE ShGamePackager HINTS ${SHINE_TOOLS_DIR} "$ENV{SHINE_BASE_DIR}/bin/tools/" PATHS /usr/local/
+find_program(SHGAMEPACKAGER_EXECUTABLE ShGamePackager HINTS "${SHINE_TOOLS_DIR}" "$ENV{SHINE_BASE_DIR}" PATHS "/usr/local/" PATH_SUFFIXES "" "bin/tools" "bin/Tools" "Bin/tools" "/Bin/Tools"
 	NO_DEFAULT_PATH
 	NO_CMAKE_ENVIRONMENT_PATH
 	NO_CMAKE_PATH
@@ -39,6 +39,8 @@ macro(CopyToShineSAAS _TargetName)
 	
 		if (ANDROID)
 			set(BUILD_ARCHITECTURE ${ANDROID_ABI})
+		elseif(CMAKE_SYSTEM_NAME MATCHES "Linux")
+			string(REPLACE "-linux-gnu" "" BUILD_ARCHITECTURE ${CMAKE_LIBRARY_ARCHITECTURE})
 		endif()
 	
 		add_custom_target(BuildSAAS

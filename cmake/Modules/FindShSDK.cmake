@@ -31,7 +31,8 @@ endif (MSVC)
 
 set(SHSDK_LIBRARIES )
 
-#FIND_SHSDK_LIBRARY(SHCORE_LIBRARY ShCore)
+FIND_SHSDK_LIBRARY(SHCORE_LIBRARY ShCore)
+set(SHSDK_LIBRARIES ${SHSDK_LIBRARIES} "${SHCORE_LIBRARY}")
 
 list(FIND ShSDK_FIND_COMPONENTS "ShEntryPoint" ShEntryPoint_INDEX)
 if (${ShEntryPoint_INDEX} GREATER -1)
@@ -53,7 +54,7 @@ set(SHSDK_INCLUDE_DIRS "${SHSDK_INCLUDE_DIR}")
 
 if (SHSDK_LIBRARY)
 
-	if (${CMAKE_SYSTEM_NAME} MATCHES "Android")
+	if (CMAKE_SYSTEM_NAME MATCHES "Android")
 		#find_package(Threads) # automatic
 		set(LIB_ANDROID android)
 		set(LIB_LOG log)
@@ -67,7 +68,7 @@ if (SHSDK_LIBRARY)
 
 		# TODO
 
-	elseif (${CMAKE_SYSTEM_NAME} MATCHES "Linux") # Not Android and not Apple ... must be Linux or BSD
+	elseif (CMAKE_SYSTEM_NAME MATCHES "Linux") # Not Android and not Apple ... must be Linux or BSD
 
 		find_package(Threads QUIET)
 		find_package(OpenGL QUIET)
@@ -76,7 +77,7 @@ if (SHSDK_LIBRARY)
 
 		list(APPEND SHSDK_LIBRARIES "${OPENGL_LIBRARIES}" "${X11_LIBRARIES}" "${OPENAL_LIBRARY}" "${CMAKE_THREAD_LIBS_INIT}")
 
-	elseif (${CMAKE_SYSTEM_NAME} MATCHES "Windows")
+	elseif (CMAKE_SYSTEM_NAME MATCHES "Windows")
 
 		find_package(DirectX9 QUIET)
 		find_package(XAudio QUIET)
